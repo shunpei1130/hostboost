@@ -20,14 +20,13 @@
 
 ### DNSレコード（maora.co.jp）
 
-TTLはAuto。ルートドメインの既存MXやSPFを置き換えず、以下の名前に追加します。
+会社側Resendチーム「maora」で発行されたレコードです。TTLは600。ルートドメインの既存MXやSPFを置き換えず、以下の名前に追加します。個人側チームの旧レコードは使用しません。
 
 | 種類 | 名前 | 値 | 優先度 |
 | --- | --- | --- | --- |
-| TXT | resend._domainkey | p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDA/rlIBuvYkQMoc1cQJVzR6jAN/6y3aoDMJc/ik1Vcgjkt1WEwE0BNZ9g1MfnEE9/RadsZEo+oI0CLgihhc3JIwdMR+wIGFQlkpCG/XgdXd1ohKBxJ4HuiGVbqdCgOMTGDuMoY7jp+zvftbmUb75PR2UfWRiY3vYmhoG1JHW1IiwIDAQAB | — |
-| MX | send | feedback-smtp.ap-northeast-1.amazonses.com | 10 |
-| TXT | send | v=spf1 include:amazonses.com ~all | — |
-| CNAME | rsend | send.forge.rmta.net | — |
+| TXT | resend._domainkey | p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQYaqUmvN9mjeEHvqWk7CmExQlyQ35P0ivF/uA9hmVmAqDfXc/W7RfNDtFeM5a4SKGLYlNLSQUaPG06mbg8uzGSy1QXVtWpGrfMqLPIHFo1cZv2vRzFmEY1OvolNMjmVmLjE45wLNzvrjH8bGS1vfk5OwoBwr89Sk+oLKR933epwIDAQAB | — |
+| CNAME | rsend | rsend-apne1.forge.rmta.net | — |
+| CNAME | send | send.forge.rmta.net | — |
 
 ## 端末内の写真ツール
 
