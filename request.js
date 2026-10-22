@@ -26,11 +26,24 @@
       const done = document.querySelector('#request-done');
       done.hidden = false;
       document.querySelector('#receipt').textContent = data.requestId;
-      done.focus();
+      const listing = new URL(payload.url.trim());
+      const listingLink = document.querySelector('#submitted-listing');
+      listingLink.href = listing.origin + listing.pathname;
+      listingLink.textContent = listing.origin + listing.pathname;
+      document.querySelector('#submitted-email').textContent = payload.email.trim();
+      document.querySelector('#confirmation-status').textContent = data.confirmationEmailAccepted
+        ? '受付確認メールを送信しました。返信の目安と受付番号をメールでもご確認いただけます。'
+        : '依頼は受け付けましたが、受付確認メールを送信できませんでした。再申し込みは不要です。受付番号と返信の目安をこの画面でお控えください。';
+      const toolUrl = document.querySelector('#url');
+      toolUrl.value = listing.origin + listing.pathname;
+      const title = document.querySelector('#done-title');
+      title.setAttribute('tabindex', '-1');
+      title.focus({ preventScroll: true });
+      done.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
     } catch (error) {
       status.textContent = error.message || '通信できませんでした。時間をおいて再送してください。';
       form.querySelectorAll('input, textarea').forEach(el => { el.disabled = false; });
       button.disabled = false;
-    } finally { button.textContent = '無料診断を申し込む →'; }
+    } finally { button.textContent = '無料で写真診断を申し込む'; }
   });
 })();
