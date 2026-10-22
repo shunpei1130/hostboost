@@ -45,11 +45,11 @@ module.exports = async function handler(req, res) {
   const email = typeof body.email === 'string' ? body.email.trim() : '';
   const urlText = typeof body.url === 'string' ? body.url.trim() : '';
   const note = typeof body.note === 'string' ? body.note.trim() : '';
-  if (!emailPattern.test(email) || email.length > 254 || note.length > 1000 || body.consent !== true || !/^[a-f0-9-]{36}$/i.test(body.requestId || '')) return res.status(400).json({ message: 'メールアドレスと同意のチェックを確認してください。' });
+  if (!emailPattern.test(email) || email.length > 254 || note.length > 1000 || body.consent !== true || !/^[a-f0-9-]{36}$/i.test(body.requestId || '')) return res.status(400).json({ message: 'メールアドレスと、同意欄にチェックが入っているかを確認してください。' });
   let url;
   try { url = new URL(urlText); } catch { return res.status(400).json({ message: 'Airbnbの掲載URLを確認してください。' }); }
-  if (url.protocol !== 'https:' || url.username || url.password || url.port || !/^(www\.)?airbnb\.(jp|com|co\.uk|com\.au|ca|fr|de|it|es)$/.test(url.hostname) || !/^\/rooms\/\d+\/?$/.test(url.pathname)) return res.status(400).json({ message: 'https://www.airbnb.jp/rooms/… のような掲載ページURLを入力してください。' });
-  if (!configured()) return res.status(503).json({ message: '現在、受付準備中です。しばらくしてからお申し込みください。' });
+  if (url.protocol !== 'https:' || url.username || url.password || url.port || !/^(www\.)?airbnb\.(jp|com|co\.uk|com\.au|ca|fr|de|it|es)$/.test(url.hostname) || !/^\/rooms\/\d+\/?$/.test(url.pathname)) return res.status(400).json({ message: 'https://www.airbnb.jp/rooms/… のようなAirbnbの掲載URLを入力してください。' });
+  if (!configured()) return res.status(503).json({ message: '現在、受付準備中です。受付開始までお待ちください。' });
   const canonical = url.origin + url.pathname;
   const payload = {
     from: process.env.DIAGNOSIS_FROM_EMAIL,

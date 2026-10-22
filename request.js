@@ -32,8 +32,8 @@
       listingLink.textContent = listing.origin + listing.pathname;
       document.querySelector('#submitted-email').textContent = payload.email.trim();
       document.querySelector('#confirmation-status').textContent = data.confirmationEmailAccepted
-        ? '受付確認メールを送信しました。返信の目安と受付番号をメールでもご確認いただけます。'
-        : '依頼は受け付けましたが、受付確認メールを送信できませんでした。再申し込みは不要です。受付番号と返信の目安をこの画面でお控えください。';
+        ? '受付確認メールを送信しました。レポートが届く時期の目安と受付番号を、メールでもご確認いただけます。'
+        : '依頼は受け付けましたが、受付確認メールを送信できませんでした。再申し込みは不要です。この画面の受付番号と、レポートが届く時期の目安をお控えください。';
       const toolUrl = document.querySelector('#url');
       toolUrl.value = listing.origin + listing.pathname;
       const title = document.querySelector('#done-title');
